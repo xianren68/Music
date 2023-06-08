@@ -1,7 +1,7 @@
 package model
 
 import (
-	"Music/utils"
+	"Music/config"
 	"fmt"
 
 	"gorm.io/driver/mysql"
@@ -12,11 +12,11 @@ import (
 func InitDb() {
 	// 建立链接
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		utils.DbUser,
-		utils.DbPassword,
-		utils.DbHost,
-		utils.DbPort,
-		utils.DbName,
+		config.DbUser,
+		config.DbPassword,
+		config.DbHost,
+		config.DbPort,
+		config.DbName,
 	)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
