@@ -11,6 +11,8 @@ import (
 var (
 	// 数据库相关配置
 	Db, DbHost, DbUser, DbPort, DbPassword, DbName string
+	// 服务器配置
+	AppMode, HttpPort string
 )
 
 // 初始化配置
@@ -21,6 +23,7 @@ func init() {
 		panic(fmt.Sprintf("Fail to read file: %v", err))
 	}
 	loadDbConfig(file)
+	loadServerConfig(file)
 
 }
 
@@ -32,4 +35,10 @@ func loadDbConfig(file *ini.File) {
 	DbPort = file.Section("database").Key("DbPort").MustString("3306")
 	DbPassword = file.Section("database").Key("DbPassWord").MustString("123456")
 	DbName = file.Section("database").Key("DbName").MustString("Musci")
+}
+
+// 获取服务器配置
+func loadServerConfig(file *ini.File) {
+	AppMode = file.Section("server").Key("AppMode").MustString("debug")
+	HttpPort = file.Section("server").Key("HttpPort").MustString("8080")
 }

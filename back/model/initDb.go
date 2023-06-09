@@ -2,6 +2,7 @@ package model
 
 import (
 	"Music/config"
+	"Music/model/user"
 	"fmt"
 
 	"gorm.io/driver/mysql"
@@ -23,5 +24,5 @@ func InitDb() {
 		fmt.Println("mysql connect error", err)
 	}
 	// 数据库迁移
-	db.AutoMigrate(&User{})
+	db.AutoMigrate(&user.Core{}, &user.Info{})
 }
