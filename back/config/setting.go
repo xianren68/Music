@@ -12,7 +12,7 @@ var (
 	// 数据库相关配置
 	Db, DbHost, DbUser, DbPort, DbPassword, DbName string
 	// 服务器配置
-	AppMode, HttpPort string
+	AppMode, HttpPort, JwtKey string
 )
 
 // 初始化配置
@@ -41,4 +41,5 @@ func loadDbConfig(file *ini.File) {
 func loadServerConfig(file *ini.File) {
 	AppMode = file.Section("server").Key("AppMode").MustString("debug")
 	HttpPort = file.Section("server").Key("HttpPort").MustString("8080")
+	JwtKey = file.Section("server").Key("JwtKey").MustString("123456")
 }
